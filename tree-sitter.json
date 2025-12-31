@@ -7,7 +7,7 @@
       "title": "DctTxt",
       "scope": "source.dct_txt",
       "file-types": [
-        "dct.txt"
+        "dct_txt"
       ],
       "injection-regex": "^dct_txt$",
       "class-name": "TreeSitterDctTxt"
