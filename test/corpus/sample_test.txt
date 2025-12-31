@@ -1,0 +1,92 @@
+# 测试
+====================================
+简单测试
+====================================
+/*! func [1, 2, 3]{total: 3 } */
+text := a || b || c || d /* := */
+text => text
+text <> k: v, other: v /* kvs */
+text >> /* null */ null
+text >> "???"
+text ???
+
+---
+(source_file 
+  (script_line 
+    cmd: (identifier )
+    (flow_sequence 
+      (flow_node 
+        (scalar 
+          (integer_scalar )))
+      (flow_node 
+        (scalar 
+          (integer_scalar )))
+      (flow_node 
+        (scalar 
+          (integer_scalar ))))
+    (flow_mapping 
+      (flow_mapping_entries 
+        (scalar 
+          (plain_scalar ))
+        (flow_node 
+          (scalar 
+            (integer_scalar ))))))
+  (s_n )
+  (list_line 
+    (list_head 
+      (t )
+      (s_def ))
+    (list_items 
+      (list_t )
+      s: (s_list_sep )
+      (list_t )
+      s: (s_list_sep )
+      (list_t )
+      s: (s_list_sep )
+      (list_t )))
+  (comment )
+  (s_n )
+  (text_line 
+    (text_head 
+      (t )
+      (s_2r ))
+    (T ))
+  (s_n )
+  (kvs_line 
+    (kvs_head 
+      (t )
+      (s_lr ))
+    (flow_mapping_entries 
+      (scalar 
+        (plain_scalar ))
+      (flow_node 
+        (scalar 
+          (plain_scalar )))
+      (scalar 
+        (plain_scalar ))
+      (flow_node 
+        (scalar 
+          (plain_scalar )))))
+  (comment )
+  (s_n )
+  (value_line 
+    (value_head 
+      (t )
+      (s_rr ))
+    (comment )
+    (flow_node 
+      (scalar 
+        (null_scalar ))))
+  (s_n )
+  (value_line 
+    (value_head 
+      (t )
+      (s_rr ))
+    (flow_node 
+      (scalar 
+        (quoted_scalar ))))
+  (s_n )
+  (key_line 
+    (key_line_t 
+      (t )))
+  (s_n ))

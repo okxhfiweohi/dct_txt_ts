@@ -1,0 +1,621 @@
+[
+  {
+    "type": "boolean_scalar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true,
+    "fields": {}
+  },
+  {
+    "type": "flow_mapping",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "flow_mapping_entries",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flow_mapping_entries",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "flow_node",
+          "named": true
+        },
+        {
+          "type": "scalar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flow_node",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "flow_mapping",
+          "named": true
+        },
+        {
+          "type": "flow_sequence",
+          "named": true
+        },
+        {
+          "type": "scalar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "flow_sequence",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flow_node",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "key_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "key_line_t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "key_line_t",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "kvs_head",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "kvs_head",
+          "named": true
+        },
+        {
+          "type": "s_lr",
+          "named": true
+        },
+        {
+          "type": "t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "kvs_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "flow_mapping_entries",
+          "named": true
+        },
+        {
+          "type": "kvs_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_head",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "list_head",
+          "named": true
+        },
+        {
+          "type": "s_def",
+          "named": true
+        },
+        {
+          "type": "t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_items",
+    "named": true,
+    "fields": {
+      "s": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "s_list_sep",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "list_t",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "list_head",
+          "named": true
+        },
+        {
+          "type": "list_items",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "null_scalar",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ws",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "plain_scalar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quoted_scalar",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scalar",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_scalar",
+          "named": true
+        },
+        {
+          "type": "float_scalar",
+          "named": true
+        },
+        {
+          "type": "integer_scalar",
+          "named": true
+        },
+        {
+          "type": "null_scalar",
+          "named": true
+        },
+        {
+          "type": "plain_scalar",
+          "named": true
+        },
+        {
+          "type": "quoted_scalar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "script_line",
+    "named": true,
+    "fields": {
+      "cmd": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "flow_mapping",
+          "named": true
+        },
+        {
+          "type": "flow_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "key_line",
+          "named": true
+        },
+        {
+          "type": "kvs_line",
+          "named": true
+        },
+        {
+          "type": "list_line",
+          "named": true
+        },
+        {
+          "type": "s_n",
+          "named": true
+        },
+        {
+          "type": "script_line",
+          "named": true
+        },
+        {
+          "type": "text_line",
+          "named": true
+        },
+        {
+          "type": "value_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text_head",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "s_2r",
+          "named": true
+        },
+        {
+          "type": "t",
+          "named": true
+        },
+        {
+          "type": "text_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "T",
+          "named": true
+        },
+        {
+          "type": "text_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_head",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "s_rr",
+          "named": true
+        },
+        {
+          "type": "t",
+          "named": true
+        },
+        {
+          "type": "value_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "flow_node",
+          "named": true
+        },
+        {
+          "type": "value_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\r",
+    "named": false
+  },
+  {
+    "type": "!!null",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "''",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "*/",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "/*!",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "FALSE",
+    "named": false
+  },
+  {
+    "type": "False",
+    "named": false
+  },
+  {
+    "type": "NULL",
+    "named": false
+  },
+  {
+    "type": "Null",
+    "named": false
+  },
+  {
+    "type": "T",
+    "named": true
+  },
+  {
+    "type": "TRUE",
+    "named": false
+  },
+  {
+    "type": "True",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "float_scalar",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "integer_scalar",
+    "named": true
+  },
+  {
+    "type": "list_t",
+    "named": true
+  },
+  {
+    "type": "null",
+    "named": false
+  },
+  {
+    "type": "s_2r",
+    "named": true
+  },
+  {
+    "type": "s_def",
+    "named": true
+  },
+  {
+    "type": "s_list_sep",
+    "named": true
+  },
+  {
+    "type": "s_lr",
+    "named": true
+  },
+  {
+    "type": "s_n",
+    "named": true
+  },
+  {
+    "type": "s_rr",
+    "named": true
+  },
+  {
+    "type": "t",
+    "named": true
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "ws",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

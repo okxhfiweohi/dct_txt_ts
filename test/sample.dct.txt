@@ -1,0 +1,8 @@
+/*! func [1, 2, 3]{total: 3 } */
+text := a || b || c || d /* := */
+text => text
+text <> k: v, other: v /* kvs */
+text >> /* null */ null
+text >> "???"
+text ???
+utf文:=文字||😄||:)

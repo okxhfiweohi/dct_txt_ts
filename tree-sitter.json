@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "dct_txt",
+      "camelcase": "DctTxt",
+      "title": "DctTxt",
+      "scope": "source.dct_txt",
+      "file-types": [
+        "dct.txt"
+      ],
+      "injection-regex": "^dct_txt$",
+      "class-name": "TreeSitterDctTxt"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "DctTxt grammar for tree-sitter",
+    "authors": [
+      {
+        "name": " "
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/okxhfiweohi/dct_txt_ts.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
