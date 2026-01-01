@@ -1,6 +1,6 @@
 /**
  * @file DctTxt grammar for tree-sitter
- * @author  
+ * @author
  * @license MIT
  */
 
@@ -11,7 +11,7 @@ export default grammar({
   name: "dct_txt",
 
   extras: ($) => [
-    /[ \t]/,
+    $._ws,
     $.comment,
   ],
 
@@ -27,14 +27,14 @@ export default grammar({
             $.list_line, // :=
             $.kvs_line, // <>
             $.script_line, // /*! ...*/
-            $.key_line, // other
+            $.head_chunk, // other
           )),
-          $.s_n,
+          $._s_n,
         ),
       ),
 
     identifier: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
-    s_n: ($) => /\r?\n/,
+    _s_n: ($) => /\r?\n/,
     script_line: ($) =>
       seq(
         "/*!",
@@ -44,46 +44,40 @@ export default grammar({
         "*/",
       ),
 
-    T: ($) => /[^/\n\r]+/,
-    t: ($) => /[^:=<>/\n\r]+/,
+    _T: ($) => /[^/\n\r]+/,
+    _t: ($) => /[^:=<>/\n\r]+/,
     _u: ($) => /[\:=<>/]/,
-    ws: ($) => /[ \t]+/,
+    _ws: ($) => /[ \t]+/,
+
+    head_chunk: ($) =>
+      repeat1(choice(
+        $._t,
+        /:[^\n=]?/,
+        /=[^\n>]?/,
+        />[^\n>]/,
+        /<[^\n>]?/,
+        /\/[^\n*]?/,
+      )),
 
     s_rr: ($) => ">>",
-    value_head: ($) =>
-      make_head(
-        $,
-        $.value_head,
-        $.s_rr,
-      ),
     value_line: ($) =>
       seq(
-        $.value_head,
-        optional($.flow_node),
+        $.head_chunk,
+        $.s_rr,
+        optional(field("value", $.flow_node)),
       ),
 
     s_2r: ($) => "=>",
-    text_head: ($) =>
-      make_head(
-        $,
-        $.text_head,
-        $.s_2r,
-      ),
     text_line: ($) =>
       seq(
-        $.text_head,
+        $.head_chunk,
+        $.s_2r,
         repeat(
-          $.T,
+          $._T,
         ),
       ),
 
     s_def: ($) => ":=",
-    list_head: ($) =>
-      make_head(
-        $,
-        $.list_head,
-        $.s_def,
-      ),
     list_t: ($) => /[^/\n\r|]+/,
     s_list_sep: ($) => "||",
     list_items: ($) =>
@@ -96,42 +90,17 @@ export default grammar({
       ),
     list_line: ($) =>
       seq(
-        $.list_head,
+        $.head_chunk,
+        $.s_def,
         optional($.list_items),
       ),
 
     s_lr: ($) => "<>",
-    kvs_head: ($) =>
-      make_head(
-        $,
-        $.kvs_head,
-        $.s_lr,
-      ),
     kvs_line: ($) =>
       seq(
-        $.kvs_head,
+        $.head_chunk,
+        $.s_lr,
         optional($.flow_mapping_entries),
-      ),
-
-    key_line_t: ($) =>
-      seq(
-        $.t,
-        optional(
-          // not => <> := >>
-          /(:[^/\n\r=])|([=<>][^/\n\r>])/,
-        ),
-      ),
-    key_line: ($) =>
-      repeat1(
-        $.key_line_t,
-      ),
-
-    empty_line: ($) =>
-      repeat1(
-        choice(
-          /[ \t]+/,
-          $.comment,
-        ),
       ),
 
     _comment: ($) =>
@@ -165,23 +134,28 @@ export default grammar({
         "}",
       ),
 
-    flow_mapping_entries: ($) => sepBy1(",", $._flow_mapping_entry),
+    flow_mapping_entries: ($) => sepBy1(",", $.flow_mapping_entry),
 
-    _flow_mapping_entry: ($) =>
+    flow_mapping_entry: ($) =>
       seq(
-        $.scalar,
-        ":",
-        optional($.flow_node),
+        field("key", $.flow_node),
+        optional(choice(
+          ":",
+          seq(
+            ":",
+            field("value", $.flow_node),
+          ),
+        )),
       ),
 
     flow_sequence: ($) =>
       seq(
         "[",
-        optional($._flow_sequence_entries),
+        optional($.flow_sequence_entries),
         "]",
       ),
 
-    _flow_sequence_entries: ($) => sepBy1(",", $.flow_node),
+    flow_sequence_entries: ($) => sepBy1(",", field("value", $.flow_node)),
 
     scalar: ($) =>
       choice(
@@ -198,7 +172,7 @@ export default grammar({
         "null",
         "Null",
         "NULL",
-        seq("!!null", $.ws, choice("null", "''")),
+        seq("!!null", $._ws, choice("null", "''")),
       ),
 
     boolean_scalar: ($) =>
@@ -271,12 +245,12 @@ export default grammar({
 });
 
 function sepBy1(separator, rule) {
-  return seq(rule, repeat(seq(separator, rule)));
+  return seq(rule, repeat(seq(separator, rule)), optional(separator));
 }
 
 function make_head($, self, endswith) {
   return seq(
-    $.t,
+    $._t,
     choice(
       seq(
         $.comment,
@@ -287,4 +261,3 @@ function make_head($, self, endswith) {
     ),
   );
 }
-

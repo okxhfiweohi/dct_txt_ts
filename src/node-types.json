@@ -34,14 +34,36 @@
       "required": true,
       "types": [
         {
-          "type": "flow_node",
-          "named": true
-        },
-        {
-          "type": "scalar",
+          "type": "flow_mapping_entry",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "flow_mapping_entry",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "flow_node",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "flow_node",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -72,72 +94,36 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "flow_node",
+          "type": "flow_sequence_entries",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "key_line",
+    "type": "flow_sequence_entries",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "key_line_t",
-          "named": true
-        }
-      ]
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "flow_node",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
-    "type": "key_line_t",
+    "type": "head_chunk",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "t",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "kvs_head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "kvs_head",
-          "named": true
-        },
-        {
-          "type": "s_lr",
-          "named": true
-        },
-        {
-          "type": "t",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "kvs_line",
@@ -152,34 +138,11 @@
           "named": true
         },
         {
-          "type": "kvs_head",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "list_head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
+          "type": "head_chunk",
           "named": true
         },
         {
-          "type": "list_head",
-          "named": true
-        },
-        {
-          "type": "s_def",
-          "named": true
-        },
-        {
-          "type": "t",
+          "type": "s_lr",
           "named": true
         }
       ]
@@ -220,11 +183,15 @@
       "required": true,
       "types": [
         {
-          "type": "list_head",
+          "type": "head_chunk",
           "named": true
         },
         {
           "type": "list_items",
+          "named": true
+        },
+        {
+          "type": "s_def",
           "named": true
         }
       ]
@@ -233,17 +200,7 @@
   {
     "type": "null_scalar",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "ws",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "plain_scalar",
@@ -337,10 +294,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "key_line",
+          "type": "head_chunk",
           "named": true
         },
         {
@@ -349,10 +306,6 @@
         },
         {
           "type": "list_line",
-          "named": true
-        },
-        {
-          "type": "s_n",
           "named": true
         },
         {
@@ -371,33 +324,6 @@
     }
   },
   {
-    "type": "text_head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "s_2r",
-          "named": true
-        },
-        {
-          "type": "t",
-          "named": true
-        },
-        {
-          "type": "text_head",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "text_line",
     "named": true,
     "fields": {},
@@ -406,38 +332,11 @@
       "required": true,
       "types": [
         {
-          "type": "T",
+          "type": "head_chunk",
           "named": true
         },
         {
-          "type": "text_head",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "value_head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "s_rr",
-          "named": true
-        },
-        {
-          "type": "t",
-          "named": true
-        },
-        {
-          "type": "value_head",
+          "type": "s_2r",
           "named": true
         }
       ]
@@ -446,17 +345,28 @@
   {
     "type": "value_line",
     "named": true,
-    "fields": {},
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "flow_node",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "flow_node",
+          "type": "head_chunk",
           "named": true
         },
         {
-          "type": "value_head",
+          "type": "s_rr",
           "named": true
         }
       ]
@@ -523,10 +433,6 @@
     "named": false
   },
   {
-    "type": "T",
-    "named": true
-  },
-  {
     "type": "TRUE",
     "named": false
   },
@@ -587,24 +493,12 @@
     "named": true
   },
   {
-    "type": "s_n",
-    "named": true
-  },
-  {
     "type": "s_rr",
-    "named": true
-  },
-  {
-    "type": "t",
     "named": true
   },
   {
     "type": "true",
     "named": false
-  },
-  {
-    "type": "ws",
-    "named": true
   },
   {
     "type": "{",
