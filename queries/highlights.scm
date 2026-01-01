@@ -64,7 +64,7 @@ value: (flow_node
 (head_chunk) @text.strike
 (text_line
   (head_chunk) @text.strong
-  ) 
+  ) @text.strong
 (value_line
   ( head_chunk ) @text.strong
   )

@@ -7,11 +7,11 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+const _ws = /[ \t]+/
 export default grammar({
   name: "dct_txt",
-
   extras: ($) => [
-    $._ws,
+    _ws,
     $.comment,
   ],
 
@@ -44,19 +44,26 @@ export default grammar({
         "*/",
       ),
 
-    _T: ($) => /[^/\n\r]+/,
-    _t: ($) => /[^:=<>/\n\r]+/,
-    _u: ($) => /[\:=<>/]/,
-    _ws: ($) => /[ \t]+/,
+    // _ws: ($) => /[ \t]+/,
 
     head_chunk: ($) =>
       repeat1(choice(
-        $._t,
-        /:[^\n=]?/,
-        /=[^\n>]?/,
-        />[^\n>]/,
-        /<[^\n>]?/,
-        /\/[^\n*]?/,
+        /[^:=<>/\n\r]+/,
+        seq(":",
+          optional(/[^:=<>/\n\r]/),
+        ),
+        seq("=",
+          optional(/[^:=<>/\n\r]/),
+        ),
+        seq(">",
+          optional(/[^:=<>/\n\r]/),
+        ),
+        seq("<",
+          optional(/[^:=<>/\n\r]/),
+        ),
+        seq("/",
+          optional(/[^:=<>/\n\r*]/),
+        ),
       )),
 
     s_rr: ($) => ">>",
@@ -72,9 +79,10 @@ export default grammar({
       seq(
         $.head_chunk,
         $.s_2r,
-        repeat(
-          $._T,
-        ),
+        repeat(choice(
+          /[^/\n\r]+/,
+          seq("/", /[^*\n\r]/)
+        )),
       ),
 
     s_def: ($) => ":=",
@@ -172,7 +180,7 @@ export default grammar({
         "null",
         "Null",
         "NULL",
-        seq("!!null", $._ws, choice("null", "''")),
+        seq("!!null", _ws, choice("null", "''")),
       ),
 
     boolean_scalar: ($) =>
@@ -246,18 +254,4 @@ export default grammar({
 
 function sepBy1(separator, rule) {
   return seq(rule, repeat(seq(separator, rule)), optional(separator));
-}
-
-function make_head($, self, endswith) {
-  return seq(
-    $._t,
-    choice(
-      seq(
-        $.comment,
-        choice(endswith, self),
-      ),
-      endswith,
-      seq($._u, self),
-    ),
-  );
 }
