@@ -27,7 +27,7 @@ export default grammar({
             $.list_line, // :=
             $.kvs_line, // <>
             $.script_line, // /*! ...*/
-            $.head_chunk, // other
+            $.other_line, // other
           )),
           $._s_n,
         ),
@@ -110,6 +110,8 @@ export default grammar({
         $.s_lr,
         optional($.flow_mapping_entries),
       ),
+
+    other_line: $ => $.head_chunk,
 
     _comment: ($) =>
       seq(

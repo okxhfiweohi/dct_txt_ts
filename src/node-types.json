@@ -203,6 +203,21 @@
     "fields": {}
   },
   {
+    "type": "other_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "head_chunk",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "plain_scalar",
     "named": true,
     "fields": {}
@@ -297,15 +312,15 @@
       "required": false,
       "types": [
         {
-          "type": "head_chunk",
-          "named": true
-        },
-        {
           "type": "kvs_line",
           "named": true
         },
         {
           "type": "list_line",
+          "named": true
+        },
+        {
+          "type": "other_line",
           "named": true
         },
         {

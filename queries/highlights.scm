@@ -61,7 +61,7 @@ value: (flow_node
 
 
 ; 键
-(head_chunk) @text.strike
+(other_line) @field
 (text_line
   (head_chunk) @text.strong
   ) @text.strong

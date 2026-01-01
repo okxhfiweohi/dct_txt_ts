@@ -35,7 +35,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "head_chunk"
+                    "name": "other_line"
                   }
                 ]
               },
@@ -394,6 +394,10 @@
           ]
         }
       ]
+    },
+    "other_line": {
+      "type": "SYMBOL",
+      "name": "head_chunk"
     },
     "_comment": {
       "type": "SEQ",
